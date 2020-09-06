@@ -1,0 +1,35 @@
+#Server port
+server:
+  port: 8181
+
+#Keycloak settings
+keycloak:
+  auth-server-url: http://localhost:8080/auth
+  realm: Test
+  resource: test-app
+  public-client: true
+  ssl-required: external
+  credentials:
+    jwt:
+      client-key-password: "1"
+      client-keystore-file: "classpath:keystore.jks"
+      client-keystore-password: "1"
+      client-key-alias: "test-app"
+      token-timeout: "10"
+      client-keystore-type: "jks"
+  confidential-port: 0
+  expose-token: true
+
+#Datasource settings
+spring:
+  datasource:
+    username: konstantin
+    password: 1
+    url: jdbc:postgresql://localhost:5432/test
+  data:
+    rest:
+      base-path: /api
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
