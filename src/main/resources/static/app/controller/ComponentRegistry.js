@@ -7,7 +7,8 @@ Ext.define('AM.controller.ComponentRegistry', {
         'Components'
     ],
     controllers: [
-        'window.AddComponent'
+        'window.AddComponent',
+        'window.AddAttribute'
     ],
     refs: [
         {
@@ -20,8 +21,20 @@ Ext.define('AM.controller.ComponentRegistry', {
         }
     ],
     onAddButtonClick: function(button) {
-        var addCompWindow = Ext.widget('add-comp-window');
-        addCompWindow.show();
+        var addWindow;
+        var selection = this.getTree().getSelectionModel().getSelection();
+        if(selection && selection.length === 1) {
+            var item = selection[0];
+            var nodeText = item.get('text');
+            if(nodeText === 'Components') {
+                addWindow = Ext.widget('add-comp-window');
+            } else if(nodeText === 'Attributes') {
+                addWindow = Ext.widget('add-attr-window');
+            } else {
+                throw new Error('Unknown state of root node. Cannot initiate process of addition');
+            }
+            addWindow.show();
+        }
     },
     onEnableButtonClick: function(button) {
         var id = this.getTree().getSelectionModel().getSelection()[0].get('id');

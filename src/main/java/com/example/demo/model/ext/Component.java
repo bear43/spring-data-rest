@@ -14,11 +14,15 @@ public class Component {
     @Column(unique = true, nullable = false)
     protected String extClass;
 
-    @ManyToOne
-    protected Component owner;
+    protected Boolean enabled = true;
 
-    @OneToMany(mappedBy = "owner")
-    protected List<Component> items;
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     public Long getId() {
         return id;
@@ -44,19 +48,4 @@ public class Component {
         this.extClass = extClass;
     }
 
-    public Component getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Component owner) {
-        this.owner = owner;
-    }
-
-    public List<Component> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Component> items) {
-        this.items = items;
-    }
 }

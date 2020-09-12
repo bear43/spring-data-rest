@@ -4,7 +4,7 @@ Ext.define('AM.store.Components', {
     model: 'AM.model.TreeModel',
     proxy: {
         type: 'ajax',
-        url: '/components',
+        url: '/trees',
         reader: {
             type: 'json'
         }

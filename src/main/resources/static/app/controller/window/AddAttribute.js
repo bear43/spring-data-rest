@@ -1,27 +1,24 @@
-Ext.define('AM.controller.window.AddComponent', {
+Ext.define('AM.controller.window.AddAttribute', {
     extend: 'Ext.app.Controller',
     views: [
-        'window.AddComponent'
-    ],
-    stores: [
-        'LocalComponents'
+        'window.AddAttribute'
     ],
     refs: [
         {
             ref: 'window',
-            selector: 'add-comp-window'
+            selector: 'add-attr-window'
         },
         {
             ref: 'form',
-            selector: 'add-comp-window form'
+            selector: 'add-attr-window form'
         }
     ],
     init: function() {
         this.control({
-            'add-comp-window button[action=close]' : {
+            'add-attr-window button[action=close]' : {
                 click: this.onCancelClick
             },
-            'add-comp-window button[action=add]' : {
+            'add-attr-window button[action=add]' : {
                 click: this.onAddClick
             }
         });
@@ -35,12 +32,12 @@ Ext.define('AM.controller.window.AddComponent', {
         var values = form.getValues();
         if(form.isValid()) {
             Ext.Ajax.request({
-                url: '/components/add',
+                url: '/attributes/add',
                 method: 'POST',
                 jsonData: values,
                 success: function() {
                     Ext.Msg.alert('Success added');
-                    Ext.data.StoreManager.lookup('Components').reload();
+                    Ext.data.StoreManager.lookup('Attributes').reload();
                     this.getWindow().close();
                 },
                 failure: function() {
