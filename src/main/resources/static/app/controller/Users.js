@@ -9,6 +9,7 @@ Ext.define('AM.controller.Users', {
     ],
     models: ['User'],
     init: function() {
+        console.log('wtf');
         this.control({
             'userlist': {
                 itemdblclick: this.editUser
@@ -32,7 +33,6 @@ Ext.define('AM.controller.Users', {
             values = form.getValues();
 
         record.set(values);
-        this.getUsersStore().sync();
         win.close();
     }
 });

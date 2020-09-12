@@ -2,8 +2,9 @@ Ext.define('AM.store.Users', {
     extend: 'Ext.data.Store',
     model: 'AM.model.User',
     autoLoad: true,
+    autoSync: true,
     proxy: {
-        type: 'ajax',
+        type: 'rest',
         api: {
             create: 'api/users',
             read: 'api/users',
@@ -16,9 +17,8 @@ Ext.define('AM.store.Users', {
         }
     },
     listeners: {
-        beforeload: function(store, operation) {
+        beforeload: function (store, operation) {
             operation.page = operation.page - 1;
-            console.log(operation);
         }
     }
 });
