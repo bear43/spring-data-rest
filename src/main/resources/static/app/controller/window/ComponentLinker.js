@@ -1,24 +1,30 @@
-Ext.define('AM.controller.window.AddAttribute', {
+Ext.define('AM.controller.window.ComponentLinker', {
     extend: 'Ext.app.Controller',
     views: [
-        'window.AddAttribute'
+        'window.ComponentLinker'
+    ],
+    stores: [
+        'Items'
+    ],
+    models: [
+        'Item'
     ],
     refs: [
         {
             ref: 'window',
-            selector: 'add-attr-window'
+            selector: 'comp-linker-window'
         },
         {
             ref: 'form',
-            selector: 'add-attr-window form'
+            selector: 'comp-linker-window form'
         }
     ],
     init: function() {
         this.control({
-            'add-attr-window button[action=close]' : {
+            'comp-linker-window button[action=close]' : {
                 click: this.onCancelClick
             },
-            'add-attr-window button[action=add]' : {
+            'comp-linker-window button[action=add]' : {
                 click: this.onAddClick
             }
         });
@@ -32,12 +38,11 @@ Ext.define('AM.controller.window.AddAttribute', {
         var values = form.getValues();
         if(form.isValid()) {
             Ext.Ajax.request({
-                url: '/attributes/add',
+                url: '/registry',
                 method: 'POST',
                 jsonData: values,
                 success: function() {
                     Ext.Msg.alert('Success added');
-                    Ext.data.StoreManager.lookup('Components').reload();
                     this.getWindow().close();
                 },
                 failure: function() {

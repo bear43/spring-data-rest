@@ -3,6 +3,7 @@ package com.example.demo.model.ext;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,10 +19,13 @@ public class Registry {
     @ManyToOne
     protected Component component;
 
-    @ManyToOne
-    protected Component item;
+    @ManyToOne(fetch = FetchType.LAZY)
+    protected Registry parent;
 
-    protected Boolean enabled = true;
+    @OneToMany(mappedBy = "parent")
+    protected List<Registry> items = new ArrayList<>();
+
+    protected Boolean enabled;
 
     public Boolean getEnabled() {
         return enabled;
@@ -53,5 +57,21 @@ public class Registry {
 
     public void setComponent(Component component) {
         this.component = component;
+    }
+
+    public Registry getParent() {
+        return parent;
+    }
+
+    public void setParent(Registry parent) {
+        this.parent = parent;
+    }
+
+    public List<Registry> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Registry> items) {
+        this.items = items;
     }
 }

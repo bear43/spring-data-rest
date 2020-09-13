@@ -1,3 +1,4 @@
+//TODO: rename!
 Ext.define('AM.store.Components', {
     extend: 'Ext.data.TreeStore',
     autoLoad: true,
