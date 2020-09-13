@@ -8,7 +8,8 @@ Ext.define('AM.controller.ComponentRegistry', {
     ],
     controllers: [
         'window.AddComponent',
-        'window.AddAttribute'
+        'window.AddAttribute',
+        'window.ComponentLinker'
     ],
     refs: [
         {

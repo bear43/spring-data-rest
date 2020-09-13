@@ -1,6 +1,6 @@
 package com.example.demo.config.security;
 
-import org.keycloak.adapters.KeycloakConfigResolver;
+/*import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
@@ -24,19 +24,19 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @KeycloakConfiguration
-@ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
-public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
+@ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)*/
+public class SecurityConfig /*extends KeycloakWebSecurityConfigurerAdapter*/ {
 
-    public final KeycloakClientRequestFactory keycloakClientRequestFactory;
+   /* public final KeycloakClientRequestFactory keycloakClientRequestFactory;
 
     @Autowired
     public SecurityConfig(KeycloakClientRequestFactory keycloakClientRequestFactory) {
         this.keycloakClientRequestFactory = keycloakClientRequestFactory;
     }
 
-    /**
+    *//**
      * Registers the KeycloakAuthenticationProvider with the authentication manager.
-     */
+     *//*
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         final KeycloakAuthenticationProvider authenticationProvider = keycloakAuthenticationProvider();
@@ -46,9 +46,9 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider);
     }
 
-    /**
+    *//**
      * Defines the session authentication strategy.
-     */
+     *//*
     @Bean
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
@@ -82,5 +82,5 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Bean
     public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
         return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
-    }
+    }*/
 }
