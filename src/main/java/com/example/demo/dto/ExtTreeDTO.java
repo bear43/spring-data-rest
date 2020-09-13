@@ -10,6 +10,15 @@ public class ExtTreeDTO {
     private Boolean expanded = false;
     private Boolean disabled = false;
     private Collection<ExtTreeDTO> children = new ArrayList<>();
+    private Object metadata;
+
+    public Object getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Object metadata) {
+        this.metadata = metadata;
+    }
 
     public Long getId() {
         return id;

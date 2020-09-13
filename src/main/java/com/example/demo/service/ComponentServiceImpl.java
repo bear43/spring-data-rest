@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.ClassNameMetadata;
 import com.example.demo.dto.ExtTreeDTO;
 import com.example.demo.form.ComponentForm;
 import com.example.demo.model.ext.Component;
@@ -28,6 +29,9 @@ public class ComponentServiceImpl implements ComponentService {
         node.setLeaf(true);
         node.setDisabled(!component.getEnabled());
         node.setText(component.getName() + " : " + component.getExtClass());
+        ClassNameMetadata metadata = new ClassNameMetadata();
+        metadata.setClassName(component.getExtClass());
+        node.setMetadata(metadata);
         return node;
     }
 

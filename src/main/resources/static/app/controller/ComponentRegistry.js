@@ -67,6 +67,28 @@ Ext.define('AM.controller.ComponentRegistry', {
         });
     },
 
+    onNodeDoubleClick: function(self, record, item, index, e, eOpts) {
+        var metadata = record.get('metadata');
+        var me = this;
+        if(metadata) {
+            var className = metadata.className;
+            if (className) {
+                Ext.Msg.show({
+                    title:'Component demonstrating',
+                    msg: 'This is simple component. Wanna see it in browser?',
+                    buttons: Ext.Msg.YESNO,
+                    icon: Ext.Msg.QUESTION,
+                    fn: function (buttonId) {
+                        if (buttonId === 'yes') {
+                            me.fireEvent('browserClear');
+                            me.fireEvent('browserAddComponent', className);
+                        }
+                    }
+                });
+            }
+        }
+    },
+
     init: function() {
         this.control({
             'component-tree button[action=add]' : {
@@ -77,6 +99,9 @@ Ext.define('AM.controller.ComponentRegistry', {
             },
             'component-tree button[action=disable]' : {
                 click: this.onDisableButtonClick
+            },
+            'component-tree' : {
+                itemdblclick: this.onNodeDoubleClick
             }
         });
     }

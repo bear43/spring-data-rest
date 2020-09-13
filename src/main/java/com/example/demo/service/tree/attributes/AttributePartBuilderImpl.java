@@ -1,6 +1,8 @@
 package com.example.demo.service.tree.attributes;
 
 import com.example.demo.dto.ExtTreeDTO;
+import com.example.demo.dto.PrimitiveAttributeMetadata;
+import com.example.demo.model.ext.PrimitiveAttribute;
 import com.example.demo.repo.AttributeRepository;
 import com.example.demo.service.tree.TreePartBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,11 @@ public class AttributePartBuilderImpl implements TreePartBuilder {
             node.setLeaf(true);
             node.setText(attribute.getName());
             node.setId(attribute.getId());
+            PrimitiveAttributeMetadata metadata = new PrimitiveAttributeMetadata();
+            var primAttr = (PrimitiveAttribute) attribute;
+            metadata.setEntity(primAttr.getEntity().getCanonicalName());
+            metadata.setId(((PrimitiveAttribute) attribute).getEntityId());
+            node.setMetadata(metadata);
             subRoot.getChildren().add(node);
         });
         root.getChildren().add(subRoot);

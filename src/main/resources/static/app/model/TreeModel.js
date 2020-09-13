@@ -42,6 +42,7 @@ Ext.define('AM.model.TreeModel', {
         {name: 'qshowDelay', type: 'int', defaultValue: 0, persist: false, convert: null},
         {name: 'children', type: 'auto', defaultValue: null, persist: false, convert: null},
         {name: 'text', type: 'string'},
-        {name: 'id', type: 'int'}
+        {name: 'id', type: 'int'},
+        {name: 'metadata', type: 'auto'}
     ]
 });

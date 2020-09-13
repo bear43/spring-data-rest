@@ -3,7 +3,32 @@ Ext.define('AM.controller.Browser', {
     views: [
         'Browser'
     ],
-    init: function() {
+    refs: [
+        {
+            ref: 'browser',
+            selector: 'browser'
+        }
+    ],
+    addComponent: function(componentClassName) {
+        var browser = this.getBrowser();
+        browser.add(Ext.create(componentClassName));
+    },
 
+    clear: function() {
+        var browser = this.getBrowser();
+        browser.removeAll();
+    },
+
+    init: function() {
+        this.listen({
+            // We are using Controller event domain here
+            controller: {
+                // This selector matches any originating Controller
+                '*': {
+                    browserAddComponent: 'addComponent',
+                    browserClear: 'clear'
+                }
+            }
+        });
     }
 });
